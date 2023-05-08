@@ -38,6 +38,9 @@ public class AuthenticationController {
     @PostMapping("/generar-token")
     public ResponseEntity<?> generarToken(@RequestBody JwtRequest jwtRequest) throws Exception {
         try{
+        	System.out.println(jwtRequest.getUsername());
+        	System.out.println(jwtRequest.getPassword());
+        	
             autenticar(jwtRequest.getUsername(),jwtRequest.getPassword());
  
         }catch (UsernameNotFoundException exception){
@@ -66,7 +69,6 @@ public class AuthenticationController {
         }catch (DisabledException exception){
             throw  new Exception("USUARIO DESHABILITADO " + exception.getMessage());
         }catch (BadCredentialsException e){
-            throw  new Exception("Credenciales invalidas " + e.getMessage());
         }
     }
     
