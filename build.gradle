@@ -8,7 +8,9 @@ group = 'park.ud'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-
+springBoot {
+    mainClass = 'park.ud.ServidorParqueaderoApplication'
+}
 
 repositories {
 	mavenCentral()
@@ -33,7 +35,5 @@ tasks.named('test') {
 }
 
 tasks.jar {enabled = false}
-
-mainClassName = 'park.ud.ServidorParqueaderoApplication'
 
 
