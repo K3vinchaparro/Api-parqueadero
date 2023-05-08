@@ -1,0 +1,6 @@
+runtime: java8
+instance_class: f1
+
+handlers:
+- url: /.*
+  script: auto
