@@ -30,7 +30,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-task.jar {enable= true}
+task.jar {enable= false}
 
 springBoot {
     mainClassName = 'park.ud.ServidorParqueaderoApplication' // Reemplaza con el nombre de tu clase principal
