@@ -38,9 +38,6 @@ public class AuthenticationController {
     @PostMapping("/generar-token")
     public ResponseEntity<?> generarToken(@RequestBody JwtRequest jwtRequest) throws Exception {
         try{
-        	System.out.println(jwtRequest.getUsername());
-        	System.out.println(jwtRequest.getPassword());
-        	
             autenticar(jwtRequest.getUsername(),jwtRequest.getPassword());
  
         }catch (UsernameNotFoundException exception){
