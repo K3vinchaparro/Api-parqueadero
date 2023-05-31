@@ -18,8 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import park.ud.modelos.Parqueadero;
+import park.ud.modelos.Ubicacion;
 import park.ud.modelosDto.EspacioDeParqueaderoDto;
 import park.ud.servicios.ParqueaderoService;
+import park.ud.servicios.UbicacionService;
 
 @RestController
 @RequestMapping("/parqueadero")
@@ -30,6 +32,9 @@ public class ParqueaderoControlador {
 	
 	@Autowired
 	private ParqueaderoService parqueaderoService;
+	
+	@Autowired
+	private UbicacionService ubicacionService;
 	
 	public ParqueaderoControlador(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
@@ -56,6 +61,12 @@ public class ParqueaderoControlador {
 	public ResponseEntity<Boolean> editarParqueadero(@RequestBody Parqueadero parqueadero){
 		boolean parqueaderoEditado = parqueaderoService.editarParqueadero(parqueadero);
 		return ResponseEntity.ok(parqueaderoEditado);
+	}
+	
+	@PutMapping("/editarUbicacion/")
+	public ResponseEntity<Boolean> editarUbicacionDelParqueadero(@RequestBody Ubicacion ubicacion){
+		boolean ubicacionEditada = ubicacionService.editarUbicacion(ubicacion);
+		return ResponseEntity.ok(ubicacionEditada);
 	}
 	
 	@DeleteMapping("/eliminar/{idParqueadero}")

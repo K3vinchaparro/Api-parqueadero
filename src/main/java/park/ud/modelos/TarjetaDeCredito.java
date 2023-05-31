@@ -17,7 +17,7 @@ public class TarjetaDeCredito {
 	private String codigoSeguridad;
 	private String fechaVencimiento;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario usuario;
 	
 	

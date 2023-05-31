@@ -12,4 +12,14 @@ public class UbicacionImpl implements UbicacionService{
 	
 	@Autowired
 	private UbicacionRepository ubicacionRepository;
+
+	@Override
+	public boolean editarUbicacion(Ubicacion ubicacion) {
+		
+		if(ubicacionRepository.existsById(ubicacion.getIdUbicacion())) {
+			ubicacionRepository.save(ubicacion);
+			return true;
+		}
+		return false;
+	}
 }

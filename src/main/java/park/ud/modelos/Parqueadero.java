@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,6 +27,7 @@ public class Parqueadero {
 	private String tipoParqueadero;
 	private String horarioServicio;
 	private int tarifa;
+	@Transient
 	private int cantidadDeCupos;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parqueadero")
@@ -77,11 +79,14 @@ public class Parqueadero {
 	}
 
 	public int getCantidadDeCupos() {
-		return cantidadDeCupos;
+	    if (espaciosDeParqueadero != null) {
+	        return espaciosDeParqueadero.size();
+	    }
+	    return 0;
 	}
 
-	public void setCantidadDeCupos(int cantidadDeCupos) {
-		this.cantidadDeCupos = cantidadDeCupos;
+	public void setCantidadDeCupos() {
+		cantidadDeCupos = getCantidadDeCupos();
 	}
 
 	public List<EspacioDeParqueadero> getEspaciosDeParqueadero() {

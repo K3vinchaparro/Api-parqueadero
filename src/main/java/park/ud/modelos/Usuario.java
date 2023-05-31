@@ -37,10 +37,13 @@ public class Usuario implements UserDetails{
 	private String placaVehiculo;
 	private int puntosAcumulados;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
 	@JsonIgnore
 	private List<TarjetaDeCredito> tarjetasDeCredito;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
+	@JsonIgnore
+	private List<DetalleDeReserva> detalleDeReservas;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Rol rol;
