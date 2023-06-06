@@ -46,11 +46,11 @@ public class DetalleDeReservaIml implements DetalleDeReservaService{
         }
 	}
 	
-	public Date sumarUnDiaFecha(java.util.Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		calendar.add(Calendar.DAY_OF_MONTH, 1);
-		Date nuevaFecha = (Date) calendar.getTime();
-		return nuevaFecha;
+	public java.sql.Date sumarUnDiaFecha(java.util.Date date) {
+	    Calendar calendar = Calendar.getInstance();
+	    calendar.setTime(date);
+	    calendar.add(Calendar.DAY_OF_MONTH, 1);
+	    java.util.Date nuevaFecha = calendar.getTime();
+	    return new java.sql.Date(nuevaFecha.getTime());
 	}
 }
