@@ -16,7 +16,7 @@ import park.ud.servicios.TarjetaDeCreditoService;
 @RestController
 @RequestMapping("/tarjetaDeCredito")
 @CrossOrigin("*")
-public class TarjetaDeCreditoControlador {
+public class TarjetaDeCreditoController {
 	
 	@Autowired
 	private TarjetaDeCreditoService tarjetaDeCreditoService;

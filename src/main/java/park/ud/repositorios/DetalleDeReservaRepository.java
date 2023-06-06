@@ -1,5 +1,8 @@
 package park.ud.repositorios;
 
+import java.sql.Date;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +21,7 @@ public interface DetalleDeReservaRepository extends JpaRepository<DetalleDeReser
 	@Transactional
 	void deleteByIdDetalleDeReserva(@Param("id") Long id); 
 
+	@Query("SELECT d FROM DetalleDeReserva d WHERE d.espacioDeParqueadero.parqueadero.idParqueadero = :idParqueadero AND d.fecha = :fecha")
+	List<DetalleDeReserva> obtenerReservasDeParqueaderoYFecha(@Param("idParqueadero") Long idParqueadero, @Param("fecha") Date fecha);
 }
+ 

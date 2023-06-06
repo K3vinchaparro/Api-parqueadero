@@ -26,7 +26,7 @@ import park.ud.servicios.UbicacionService;
 @RestController
 @RequestMapping("/parqueadero")
 @CrossOrigin("*")
-public class ParqueaderoControlador {
+public class ParqueaderoController {
 	
 	private final ObjectMapper objectMapper;
 	
@@ -36,7 +36,7 @@ public class ParqueaderoControlador {
 	@Autowired
 	private UbicacionService ubicacionService;
 	
-	public ParqueaderoControlador(ObjectMapper objectMapper) {
+	public ParqueaderoController(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
         this.objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     }

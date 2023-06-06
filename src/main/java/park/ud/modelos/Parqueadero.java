@@ -80,7 +80,7 @@ public class Parqueadero {
 
 	public int getCantidadDeCupos() {
 	    if (espaciosDeParqueadero != null) {
-	        return espaciosDeParqueadero.size();
+	        return espaciosDeParqueadero.size();  
 	    }
 	    return 0;
 	}

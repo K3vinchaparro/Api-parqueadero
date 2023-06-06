@@ -1,5 +1,7 @@
 package park.ud.implementaciones;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,10 @@ public class DetalleDeReservaIml implements DetalleDeReservaService{
 
 	@Override
 	public boolean guardarDetalleDeReserva(DetalleDeReserva detalleDeReserva) {
+		
+		Date fecha = sumarUnDiaFecha(detalleDeReserva.getFecha());
+		detalleDeReserva.setFecha(fecha);
+		
 		try {
 			detalleReservaRepository.save(detalleDeReserva);
 			return true;
@@ -39,6 +45,12 @@ public class DetalleDeReservaIml implements DetalleDeReservaService{
             throw new RuntimeException("Error al eliminar el detalle en la base de datos", e);
         }
 	}
-
 	
+	public Date sumarUnDiaFecha(java.util.Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
+		Date nuevaFecha = (Date) calendar.getTime();
+		return nuevaFecha;
+	}
 }
