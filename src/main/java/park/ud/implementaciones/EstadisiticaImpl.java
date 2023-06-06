@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import park.ud.implementaciones.utilidades.UtilFechas;
 import park.ud.modelos.DetalleDeReserva;
 import park.ud.modelos.Parqueadero;
 import park.ud.repositorios.DetalleDeReservaRepository;
@@ -21,6 +22,7 @@ public class EstadisiticaImpl implements EstadisticaService {
 	
 	@Autowired
 	private ParqueaderoRepository parqueaderoRepository;
+	
 
 	@Override
 	public double obtenerTotalDeVentasSegunIdYFecha(long idEspacioParqueadero, Date fecha) throws Exception {
@@ -29,9 +31,9 @@ public class EstadisiticaImpl implements EstadisticaService {
 	        
 	        double tarifa = obtenerTarifa(idEspacioParqueadero);
 
-	        System.out.print(fecha);
+	        Date fechaCorregida = UtilFechas.sumarUnDiaAFecha(fecha);
 	        
-	        List<DetalleDeReserva> reservas = detalleDeReservaRepository.obtenerReservasDeParqueaderoYFecha(idEspacioParqueadero, fecha);
+	        List<DetalleDeReserva> reservas = detalleDeReservaRepository.obtenerReservasDeParqueaderoYFecha(idEspacioParqueadero, fechaCorregida);
 
 	        for (DetalleDeReserva reserva : reservas) {
 	            double horas = reserva.getHoras(reserva.getHoraEntrada(), reserva.getHoraSalida());

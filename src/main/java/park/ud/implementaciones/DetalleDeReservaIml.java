@@ -1,12 +1,12 @@
 package park.ud.implementaciones;
 
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import park.ud.implementaciones.utilidades.UtilFechas;
 import park.ud.modelos.DetalleDeReserva;
 import park.ud.repositorios.DetalleDeReservaRepository;
 import park.ud.servicios.DetalleDeReservaService;
@@ -20,7 +20,7 @@ public class DetalleDeReservaIml implements DetalleDeReservaService{
 	@Override
 	public boolean guardarDetalleDeReserva(DetalleDeReserva detalleDeReserva) {
 		
-		Date fecha = sumarUnDiaFecha(detalleDeReserva.getFecha());
+		Date fecha = UtilFechas.sumarUnDiaAFecha(detalleDeReserva.getFecha());
 		detalleDeReserva.setFecha(fecha);
 		
 		try {
@@ -46,11 +46,4 @@ public class DetalleDeReservaIml implements DetalleDeReservaService{
         }
 	}
 	
-	public java.sql.Date sumarUnDiaFecha(java.util.Date date) {
-	    Calendar calendar = Calendar.getInstance();
-	    calendar.setTime(date);
-	    calendar.add(Calendar.DAY_OF_MONTH, 1);
-	    java.util.Date nuevaFecha = calendar.getTime();
-	    return new java.sql.Date(nuevaFecha.getTime());
-	}
 }
