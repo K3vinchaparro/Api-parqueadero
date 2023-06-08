@@ -8,8 +8,11 @@ public interface DetalleDeReservaService {
 	
 	public List<DetalleDeReserva> listarDetalleDeReservas();
 	
+	public List<DetalleDeReserva> listarDetalleDeReservasSegunIdUsuario(Long idUsuario);
+	
 	public boolean guardarDetalleDeReserva(DetalleDeReserva detalleDeReserva);
 	
 	public boolean eliminarDetalleDeReserva(Long idDetalleDeReserva);
+	
 	
 }

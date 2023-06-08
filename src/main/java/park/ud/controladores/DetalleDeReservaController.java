@@ -30,6 +30,11 @@ public class DetalleDeReservaController {
 		return ResponseEntity.ok(detalleGuardado);
 	}
 	
+	@GetMapping("/listarSegunIdUsuario/{id}")
+	public ResponseEntity<List<DetalleDeReserva>> listarDetalleDeReservasSegunIdUsuario(@PathVariable("id") Long id){
+		return ResponseEntity.ok(detalleReservaService.listarDetalleDeReservasSegunIdUsuario(id));
+	}
+	
 	@GetMapping("/listarTodos/")
 	public ResponseEntity<List<DetalleDeReserva>> listarDetalleDeReservas(){
 		return ResponseEntity.ok(detalleReservaService.listarDetalleDeReservas());

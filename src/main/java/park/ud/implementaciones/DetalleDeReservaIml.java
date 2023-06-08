@@ -21,10 +21,12 @@ public class DetalleDeReservaIml implements DetalleDeReservaService{
 	public boolean guardarDetalleDeReserva(DetalleDeReserva detalleDeReserva) {
 		
 		Date fecha = UtilFechas.sumarUnDiaAFecha(detalleDeReserva.getFecha());
+		Long idUsuario = detalleDeReserva.getUsuario().getId();
 		detalleDeReserva.setFecha(fecha);
 		
 		try {
 			detalleReservaRepository.save(detalleDeReserva);
+			detalleReservaRepository.sumarPuntosUsuario(idUsuario, 8);
 			return true;
 		} catch (Exception e) {
             throw new RuntimeException("Error al guardar el detalle en la base de datos", e);
@@ -44,6 +46,11 @@ public class DetalleDeReservaIml implements DetalleDeReservaService{
 		} catch (Exception e) {
             throw new RuntimeException("Error al eliminar el detalle en la base de datos", e);
         }
+	}
+
+	@Override
+	public List<DetalleDeReserva> listarDetalleDeReservasSegunIdUsuario(Long idUsuario) {
+		return detalleReservaRepository.obtenerReservasSegunIdUsuario(idUsuario);
 	}
 	
 }

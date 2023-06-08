@@ -23,5 +23,13 @@ public interface DetalleDeReservaRepository extends JpaRepository<DetalleDeReser
 
 	@Query("SELECT d FROM DetalleDeReserva d WHERE d.espacioDeParqueadero.parqueadero.idParqueadero = :idParqueadero AND d.fecha = :fecha")
 	List<DetalleDeReserva> obtenerReservasDeParqueaderoYFecha(@Param("idParqueadero") Long idParqueadero, @Param("fecha") Date fecha);
+	
+	@Query("SELECT d FROM DetalleDeReserva d WHERE d.usuario.id = :idUsuario")
+	List<DetalleDeReserva> obtenerReservasSegunIdUsuario(@Param("idUsuario") Long idUsuario);
+	
+	@Query("UPDATE Usuario SET puntosAcumulados = puntosAcumulados + :puntos WHERE id = :idUsuario")
+	@Modifying
+	@Transactional
+	void sumarPuntosUsuario(@Param("idUsuario") Long idUsuario, @Param("puntos") int puntos);
 }
  
